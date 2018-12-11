@@ -1,0 +1,10 @@
+2018 FALL COSC 732 GROUP PROJECT 
+ANDROID PART DUE ON 12/10/2018 WRITTEN BY MYUNGSIK KIM
+
+1. Server side
+To implement a local server using java for socket programming connect to android app, Simply create server class and using java.net.serversocket, socket package to create serversocket in localhost server. I set the serverport = 40001 and firstly it is really hard to implement, because basically there are firewall issues, router issues and so on.
+
+Thus, once I solved all the problem(i.e. Windows OS firewall inbound, outbound exception, Router firewall sensitivity adjustment, Android Debug Bridge(ADB) port forwading from local server to remote application with port #), then able to implement socket programming. Once implement the socket then use FileInputStream class for load the .jpg file in localserver machine("C:\\Users\\Administrator\\eclipse-workspace\\socket01\\image\\Facebook-thumbs-up.jpg"). Then put the fileinputstream to buffer and using objectoutputstream send out the buffer to client side via socket. Once sent a .jpg file then able to close the all streams and socket successfully.
+
+2. Client side
+Android part is more sophisticated than java local server side. Because, there are a lot of constrains to implement a socket. For example, android app permission such as storage usage permission, read/write permission and etc. Also, using IPv4 address 10.0.2.2 for Special alias to my host loopback interface like 127.0.0.1. and so on. Once solved all the constrains then able to implement the client side socket programming in android application. Use java.net.socket package to implement client socket -> new Socket("10.0.2.2",40001); and once connect to localhost server via socket. The android app will retrieve the buffer via using objectinputstream from server side. Then use fileoutputstream to wirte(save) a .jpg file into emulator storage(/Download/Facebook-thumbs-up.jpg) then using bitmapfactory to decode buffered .jpg file and able to display in android app (facebook thumds up image).
